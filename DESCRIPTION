@@ -1,0 +1,26 @@
+Package: ENMhill
+Title: Analysis of Environmental Niche Modelling Projections Based on Hill Numbers
+Version: 1.0.0
+Author: Antton Alberdi [aut, cre]
+Maintainer: Antton Alberdi <antton.alberdi@bio.ku.dk>
+Description: Tools for analysing, comparing and visualising spatial breadth and overlap measures
+  of Environmental Niche Model projections based on Hill numbers. 'ENMhill' is an R package that
+  provides a set of functions to compute spatial breadth and overlap measures from raster data.
+License: GPL-3
+LazyData: true
+URL: https://github.com/anttonalberdi/ENMhill
+BugReports: https://github.com/anttonalberdi/ENMhill/issues
+Depends:
+    R (>= 3.1.0)
+Suggests:
+Imports:
+    stats,
+    raster,
+    scales,
+Encoding: UTF-8
+RoxygenNote: 6.1.1
+Collate:
+    'breadth.R'
+    'breadth_profile.R'
+    'overlap.R'
+    'turnover.R'
