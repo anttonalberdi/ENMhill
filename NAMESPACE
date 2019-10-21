@@ -2,4 +2,5 @@
 
 export(breadth)
 export(breadth_profile)
+export(cell_table)
 export(overlap)

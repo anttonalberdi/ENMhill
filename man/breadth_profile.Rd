@@ -2,42 +2,41 @@
 % Please edit documentation in R/breadth_profile.R
 \name{breadth_profile}
 \alias{breadth_profile}
-\title{Spatial breadth}
+\title{Spatial breadth profile}
 \usage{
-breadth_profile(raster, qvalue, relative, threshold)
+breadth_profile(raster, qvalues, relative, threshold)
 }
 \arguments{
 \item{raster}{A RasterLayer (single projection) or RasterStack (multiple projections) object containing ENM projection(s) with suitability scores.}
 
-\item{qvalue}{A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.}
+\item{qvalues}{A vector of sequential orders of diversity (default from 0 to 5). qvalues=seq(from = 0, to = 5, by = (0.1))}
 
 \item{relative}{Whether to compute absolute or relative breadths. Default=FALSE}
 
 \item{threshold}{Suitability value(s) below which all values are converted into zeros. If a RasterStack (multiple projections) is used, the argument should contain a vector of threshold values.}
 }
 \value{
-A single or multiple spatial breadth measures.
+A vector of breadth values at different orders of diversity or a matrix containing breadth values at different orders of diversity (columns) per projection (rows).
 }
 \description{
-Compute Hill numbers-based spatial breadths from one or multiple Environmental Niche Model projection rasters.
+Compute profiles of Hill numbers-based spatial breadths from one or multiple Environmental Niche Model projection rasters.
 }
 \details{
-Spatial breadth computation based on Hill numbers
+Spatial breadth profile computation based on Hill numbers
 }
 \examples{
 data()
-breadth(rasters[[1]],qvalue=1)
-breadth(rasters,qvalue=2,relative=TRUE)
-breadth(rasters,qvalue=2,relative=TRUE)
-breadth(raster[[1]],qvalue=2,relative=TRUE,threshold=100)
-breadth(rasters,qvalue=2,relative=FALSE,threshold=c(82,98,102,98,150,34)
+breadth_profile(rasters[[1]])
+breadth_profile(rasters[[1]],qvalues=seq(from = 0, to = 5, by = 1))
+breadth_profile(rasters[[1]],qvalues=seq(from = 0, to = 5, by = 1), relative=TRUE)
+breadth_profile(rasters,qvalues=seq(from = 0, to = 5, by = 1), relative=TRUE)
 }
 \references{
 Alberdi, A., Novella-Fernandez R., Aizpurua, O., Razgour, O. (2019). Measuring breadth and overlap of spatial projections of environmental niche models based on Hill numbers.\cr\cr
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19, 804-817.\cr\cr
 }
 \seealso{
-\code{\link{breadth_profile}}
+\code{\link{breadth}}
 }
 \author{
 Antton Alberdi, \email{anttonalberdi@gmail.com}
@@ -45,3 +44,4 @@ Antton Alberdi, \email{anttonalberdi@gmail.com}
 \keyword{breadth}
 \keyword{diversity}
 \keyword{hill}
+\keyword{profile}
