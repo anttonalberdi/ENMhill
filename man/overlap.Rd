@@ -2,42 +2,39 @@
 % Please edit documentation in R/overlap.R
 \name{overlap}
 \alias{overlap}
-\title{Spatial turnover}
+\title{Spatial overlap and turnover-complement}
 \usage{
 overlap(rasters, qvalue, metric, thresholds)
 }
 \arguments{
 \item{qvalue}{A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.}
 
-\item{raster}{A RasterLayer (single projection) or RasterStack (multiple projections) object containing ENM projection(s) with suitability scores.}
+\item{metric}{A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","S","V")}
 
-\item{relative}{Whether to compute absolute or relative breadths. Default=FALSE}
+\item{raster}{A RasterStack (multiple projections) object containing ENM projections with suitability scores.}
 
-\item{threshold}{Suitability value(s) below which all values are converted into zeros. If a RasterStack (multiple projections) is used, the argument should contain a vector of threshold values.}
+\item{threshold}{Suitability value(s) below which all values are converted into zeros. The argument should contain a vector of threshold values sorted as the RasterStack model projections.}
 }
 \value{
-A single or multiple spatial breadth measures.
+Alpha, gamma and beta values and similarity metrics.
 }
 \description{
-Compute Hill numbers-based spatial overlap on multiple Environmental Niche Model projection rasters.
+Compute Hill numbers-based spatial overlap and turnover-complement metrics on multiple Environmental Niche Model projection rasters.
 }
 \details{
-Spatial overlap computation based on Hill numbers
+Spatial overlap and turnover-complement computation based on Hill numbers
 }
 \examples{
 data()
-breadth(rasters[[1]],qvalue=1)
-breadth(rasters,qvalue=2,relative=TRUE)
-breadth(rasters,qvalue=2,relative=TRUE)
-breadth(raster[[1]],qvalue=2,relative=TRUE,threshold=100)
-breadth(rasters,qvalue=2,relative=FALSE,threshold=c(82,98,102,98,150,34)
+overlap(rasters,qvalue=1)
+overlap(rasters,qvalue=1,metric="C",thresholds=thresholds)
 }
 \references{
 Alberdi, A., Novella-Fernandez R., Aizpurua, O., Razgour, O. (2019). Measuring breadth and overlap of spatial projections of environmental niche models based on Hill numbers.\cr\cr
 Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19, 804-817.\cr\cr
 }
 \seealso{
-\code{\link{breadth}}, \code{\link{turnover}}
+\code{\link{breadth}}
 }
 \author{
 Antton Alberdi, \email{anttonalberdi@gmail.com}
