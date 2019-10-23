@@ -39,7 +39,7 @@ overlap.profile <- c()
   for (q in qvalues){
     cat("  q =",q,"\n")
     if(q== 1){q=0.999999}
-    overlap <- overlap(rasters,qvalue=q,metric=metric,thresholds=thresholds,celltable=TRUE)
+    overlap <- overlap(cellmatrix,qvalue=q,metric=metric,thresholds=thresholds,celltable=TRUE)
     row <- unlist(overlap)
     overlap.profile <- rbind(overlap.profile,row[-c(1:3)])
   }
