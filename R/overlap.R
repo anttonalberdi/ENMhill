@@ -7,6 +7,7 @@
 #' @param qvalue A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.
 #' @param metric A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","V","S")
 #' @param threshold Suitability value(s) below which all values are converted into zeros. The argument should contain a vector of threshold values sorted as the RasterStack model projections.
+#' @param celltable Whether the input data is a cell table created with the function cell_table() rather than a RasterStack.
 #' @return Alpha, gamma and beta values and similarity metrics.
 #' @seealso \code{\link{breadth}}
 #' @examples
@@ -18,19 +19,27 @@
 #' Alberdi, A., Gilbert, M.T.P. (2019). A guide to the application of Hill numbers to DNA-based diversity analyses. Molecular Ecology Resources, 19, 804-817.\cr\cr
 #' @export
 
-overlap <- function(rasters,qvalue,metric,thresholds){
+overlap <- function(rasters,qvalue,metric,thresholds,celltable){
 
 #Quality-check and warnings
+if(missing(celltable)){celltable = FALSE}
+if(celltable == TRUE){
 if(missing(rasters)) stop("Spatial projection data are missing. Please, provide them as RasterLayer (single projection) or RasterStack (multiple projections) objects")
 if(class(rasters) != "RasterStack") stop("Overlap function requires a RasterStack (multiple projections) object containing at least two rasters")
 if(length(names(raster)) < 2) stop("Overlap function requires a RasterStack (multiple projections) object containing at least two rasters")
+}
 if(missing(qvalue)) stop("q value is missing")
 if(qvalue == 1){qvalue=0.999999}
 if(missing(metric)) {metric = c("C","U","V","S")}
 if(missing(thresholds)) {thresholds = rep(0,length(names(rasters)))}
 
 #Convert to cell matrix
+if(celltable == FALSE){
 cellmatrix <- cell_table(raster=rasters,threshold=thresholds)
+}
+if(celltable == TRUE){
+cellmatrix <- rasters)
+}
 weight= rep(1/ncol(cellmatrix),ncol(cellmatrix))
 cellmatrix.weight <- sweep(cellmatrix,2,weight,"*")
 N <- length(weight)

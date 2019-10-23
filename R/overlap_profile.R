@@ -30,12 +30,15 @@ if(missing(qvalues)) stop("q value is missing")
 if(missing(metric)) {metric = c("C","U","V","S")}
 if(missing(thresholds)) {thresholds = rep(0,length(names(rasters)))}
 
+#Generate cell table
+cellmatrix <- cell_table(raster=rasters,threshold=thresholds)
+
 #Overlap profile
 overlap.profile <- c()
   for (q in qvalues){
     cat("q =",q,"\n")
     if(q== 1){q=0.999999}
-    overlap <- overlap(rasters,qvalue=q,metric=metric,thresholds=thresholds)
+    overlap <- overlap(rasters,qvalue=q,metric=metric,thresholds=thresholds,celltable=TRUE)
     row <- unlist(overlap)
     overlap.profile <- rbind(overlap.profile,row[-c(1:3)])
   }
