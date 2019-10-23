@@ -44,12 +44,12 @@ if(missing(normalise)) {normalise=TRUE}
     raster.matrix <- c()
     for (i in c(1:length(raster.names))){
       raster.vector <- as.vector(raster[[i]])
-      raster.vector <- raster.vector[!is.na(raster.vector)]
       raster.vector[raster.vector < threshold[i]] <- 0
-      #if(normalise == TRUE){raster.vector <- raster.vector/sum(raster.vector)}
       raster.matrix <- cbind(raster.matrix,raster.vector)
     }
+    raster.matrix <- raster.matrix[complete.cases(raster.matrix),]
     raster.matrix <- raster.matrix[apply(raster.matrix, 1, function(z) !all(z==0)),]
+    if(normalise == TRUE){raster.matrix <- sweep(raster.matrix, 2, colSums(raster.matrix), FUN="/")}
     colnames(raster.matrix) <- raster.names
     return(raster.matrix)
   }
