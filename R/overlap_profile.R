@@ -25,7 +25,7 @@ overlap_profile <- function(rasters,qvalues,metric,thresholds){
 if(missing(rasters)) stop("Spatial projection data are missing. Please, provide them as RasterLayer (single projection) or RasterStack (multiple projections) objects")
 if(class(rasters) != "RasterStack") stop("Overlap function requires a RasterStack (multiple projections) object containing at least two rasters")
 if(length(names(rasters)) < 2) stop("Overlap function requires a RasterStack (multiple projections) object containing at least two rasters")
-if(missing(qvalue)) stop("q value is missing")
+if(missing(qvalues)) stop("q value is missing")
 
 if(missing(metric)) {metric = c("C","U","V","S")}
 if(missing(thresholds)) {thresholds = rep(0,length(names(rasters)))}
