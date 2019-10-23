@@ -38,7 +38,7 @@ if(celltable == FALSE){
 cellmatrix <- cell_table(raster=rasters,threshold=thresholds)
 }
 if(celltable == TRUE){
-cellmatrix <- rasters
+cellmatrix <- as.matrix(rasters)
 }
 weight= rep(1/ncol(cellmatrix),ncol(cellmatrix))
 cellmatrix.weight <- sweep(cellmatrix,2,weight,"*")
