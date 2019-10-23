@@ -42,29 +42,30 @@ alphafun <- function(cellmatrix.weight,qvalue,weight){
   N <- length(weight)
   sum(rowSums(cellmatrix.weight.q))^(1/(1-qvalue))/N
 }
+
 gammafun <- function(cell.matrix,qvalue,weight){
   sum(rowSums(cellmatrix.weight)^qvalue)^(1/(1-qvalue))
 }
 
-CqN <- function(beta,qvalue,N){
+CqNfun <- function(beta,qvalue,N){
 if(qvalue==1){qvalue=0.99999}
 value = ((1/beta)^(qvalue-1) - (1/N)^(qvalue-1)) / (1 - (1/N)^(qvalue-1))
 return(value)
 }
 
-SqN <- function(beta,N){
-value = ((1/beta) - 1/N)/(1-1/N)
-return(value)
-}
-
-UqN <- function(beta,qvalue,N){
+UqNfun <- function(beta,qvalue,N){
 if(qvalue==1){qvalue=0.99999}
 value = ((1/beta)^(1-qvalue) - (1/N)^(1-qvalue)) / (1 - (1/N)^(1-qvalue))
 return(value)
 }
 
-VqN <- function(beta,N){
+VqNfun <- function(beta,N){
 value = (N - beta)/(N-1)
+return(value)
+}
+
+SqNfun <- function(beta,N){
+value = ((1/beta) - 1/N)/(1-1/N)
 return(value)
 }
 
@@ -74,10 +75,10 @@ gamma <- gammafun(cellmatrix.weight,qvalue,weight)
 beta <- gamma/alpha
 
 results <- list(alpha=alpha,gamma=gamma,beta=beta)
-if ("C" %in% metric){results <- append(results, list(CqN=CqN(beta,qvalue,N)))}
-if ("S" %in% metric){results <- append(results, list(SqN=SqN(beta,N)))}
-if ("U" %in% metric){results <- append(results, list(UqN=UqN(beta,qvalue,N)))}
-if ("V" %in% metric){results <- append(results, list(VqN=VqN(beta,N)))}
+if ("C" %in% metric){results <- append(results, list(CqN=CqNfun(beta,qvalue,N)))}
+if ("U" %in% metric){results <- append(results, list(UqN=UqNfun(beta,qvalue,N)))}
+if ("V" %in% metric){results <- append(results, list(VqN=VqNfun(beta,N)))}
+if ("S" %in% metric){results <- append(results, list(SqN=SqNfun(beta,N)))}
 
 return(results)
 }
