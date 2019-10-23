@@ -9,7 +9,7 @@ overlap(rasters, qvalue, metric, thresholds)
 \arguments{
 \item{qvalue}{A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.}
 
-\item{metric}{A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","S","V")}
+\item{metric}{A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","V","S")}
 
 \item{raster}{A RasterStack (multiple projections) object containing ENM projections with suitability scores.}
 

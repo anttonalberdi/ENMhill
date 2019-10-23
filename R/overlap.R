@@ -5,7 +5,7 @@
 #' @description Compute Hill numbers-based spatial overlap and turnover-complement metrics on multiple Environmental Niche Model projection rasters.
 #' @param raster A RasterStack (multiple projections) object containing ENM projections with suitability scores.
 #' @param qvalue A positive number, usually between 0 and 5, but most commonly 0, 1 or 2. It can be an integer or contain decimals.
-#' @param metric A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","S","V")
+#' @param metric A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","V","S")
 #' @param threshold Suitability value(s) below which all values are converted into zeros. The argument should contain a vector of threshold values sorted as the RasterStack model projections.
 #' @return Alpha, gamma and beta values and similarity metrics.
 #' @seealso \code{\link{breadth}}
