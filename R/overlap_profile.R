@@ -37,6 +37,7 @@ cellmatrix <- cell_table(raster=rasters,threshold=thresholds)
 if(verbosity == TRUE){cat(" Done.\n")}
 
 #Overlap profile
+if(verbosity == TRUE){cat("Computing overlaps...\n")}
 overlap.profile <- c()
   for (q in qvalues){
     if(verbosity == TRUE){cat("  q =",q,"\n")}
