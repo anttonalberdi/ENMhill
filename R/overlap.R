@@ -23,7 +23,7 @@ overlap <- function(rasters,qvalue,metric,thresholds,celltable){
 
 #Quality-check and warnings
 if(missing(celltable)){celltable = FALSE}
-if(celltable == TRUE){
+if(celltable == FALSE){
 if(missing(rasters)) stop("Spatial projection data are missing. Please, provide them as RasterLayer (single projection) or RasterStack (multiple projections) objects")
 if(class(rasters) != "RasterStack") stop("Overlap function requires a RasterStack (multiple projections) object containing at least two rasters")
 if(length(names(raster)) < 2) stop("Overlap function requires a RasterStack (multiple projections) object containing at least two rasters")

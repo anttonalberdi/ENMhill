@@ -7,6 +7,7 @@
 #' @param qvalues A vector of sequential orders of diversity (default from 0 to 5). qvalues=seq(from = 0, to = 5, by = (0.1))
 #' @param metric A vector indicating the similarity metrics to be computed. Default: metric=c("C","U","V","S")
 #' @param threshold Suitability value(s) below which all values are converted into zeros. If a RasterStack (multiple projections) is used, the argument should contain a vector of threshold values.
+#' @param verbosity Whether to print progress notes on screen or not.
 #' @return A matrix of different similarity metrics at different orders of diversity .
 #' @seealso \code{\link{breadth}}
 #' @examples
@@ -31,8 +32,9 @@ if(missing(metric)) {metric = c("C","U","V","S")}
 if(missing(thresholds)) {thresholds = rep(0,length(names(rasters)))}
 
 #Generate cell table
-cat("Converting rasters into a cell table. \n")
+cat("Converting rasters into a cell table...")
 cellmatrix <- cell_table(raster=rasters,threshold=thresholds)
+cat(" Done.\n")
 
 #Overlap profile
 overlap.profile <- c()
