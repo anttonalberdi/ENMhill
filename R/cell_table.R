@@ -45,10 +45,11 @@ if(missing(normalise)) {normalise=TRUE}
     for (i in c(1:length(raster.names))){
       raster.vector <- as.vector(raster[[i]])
       raster.vector <- raster.vector[!is.na(raster.vector)]
-      raster.vector[raster.vector < threshold] <- 0
-      if(normalise == TRUE){raster.vector <- raster.vector/sum(raster.vector)}
+      raster.vector[raster.vector < threshold[i]] <- 0
+      #if(normalise == TRUE){raster.vector <- raster.vector/sum(raster.vector)}
       raster.matrix <- cbind(raster.matrix,raster.vector)
     }
+    raster.matrix <- raster.matrix[apply(raster.matrix, 1, function(z) !all(z==0)),]
     colnames(raster.matrix) <- raster.names
     return(raster.matrix)
   }
