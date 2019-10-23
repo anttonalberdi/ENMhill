@@ -22,5 +22,6 @@ RoxygenNote: 6.1.1
 Collate:
     'breadth.R'
     'breadth_profile.R'
+    'overlap_profile.R'
     'overlap.R'
     'cell_table.R'
